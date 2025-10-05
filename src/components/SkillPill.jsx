@@ -1,0 +1,1 @@
+export default function SkillPill({label}){return(<span className='px-3 py-1 rounded-full text-sm bg-white/5 border border-white/10 hover:border-accent hover:shadow-glowSoft transition inline-block'>{label}</span>)}

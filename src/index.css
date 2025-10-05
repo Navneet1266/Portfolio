@@ -1,0 +1,7 @@
+@tailwind base; @tailwind components; @tailwind utilities;
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 80px; }
+*::-webkit-scrollbar { width: 10px; }
+*::-webkit-scrollbar-track { background: #0b1220; }
+*::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 8px; }
+.bg-grid { background-image: radial-gradient(circle at 1px 1px, rgba(99,102,241,0.25) 1px, transparent 0); background-size: 24px 24px; }
