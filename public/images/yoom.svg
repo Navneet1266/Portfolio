@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" role="img" aria-label="Mock video call UI">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#0ea5a5"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="18" flood-color="#00000033"/>
+    </filter>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+
+  <!-- Main window -->
+  <g transform="translate(70,70)">
+    <rect width="1260" height="660" rx="20" fill="#0f172a" opacity="0.9" filter="url(#soft)"/>
+
+    <!-- Video grid -->
+    <g transform="translate(28,28)">
+      <!-- left large tile -->
+      <rect x="0" y="0" width="760" height="420" rx="12" fill="#111827" />
+      <g transform="translate(20,20)" fill="#e6eefb">
+        <rect width="720" height="380" rx="8" fill="#0b1220" />
+        <text x="360" y="200" font-family="Inter, Arial, sans-serif" font-size="28" text-anchor="middle" fill="#d1e8ff">You (Host)</text>
+      </g>
+
+      <!-- right column tiles -->
+      <g transform="translate(800,0)">
+        <rect x="0" y="0" width="420" height="200" rx="10" fill="#0b1220"/>
+        <g font-family="Inter, Arial, sans-serif" fill="#e6eefb">
+          <text x="210" y="105" font-size="20" text-anchor="middle">Alex</text>
+        </g>
+        <rect x="0" y="220" width="420" height="200" rx="10" fill="#071027"/>
+        <g font-family="Inter, Arial, sans-serif" fill="#e6eefb">
+          <text x="210" y="325" font-size="20" text-anchor="middle">Priya</text>
+        </g>
+      </g>
+
+      <!-- bottom thumbnails -->
+      <g transform="translate(0,460)">
+        <rect x="0" y="0" width="1180" height="120" rx="10" fill="#051023"/>
+        <g transform="translate(14,12)" fill="#cfe9ff" font-family="Inter, Arial, sans-serif" font-size="14">
+          <rect x="0" y="0" width="160" height="96" rx="8" fill="#082033"/>
+          <text x="80" y="58" text-anchor="middle">Ravi</text>
+          <rect x="184" y="0" width="160" height="96" rx="8" fill="#07283a"/>
+          <text x="264" y="58" text-anchor="middle">Sara</text>
+          <rect x="368" y="0" width="160" height="96" rx="8" fill="#07283a"/>
+          <text x="448" y="58" text-anchor="middle">Ken</text>
+          <rect x="552" y="0" width="160" height="96" rx="8" fill="#07283a"/>
+          <text x="632" y="58" text-anchor="middle">Maya</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- control bar -->
+    <g transform="translate(420,540)">
+      <rect x="-140" y="0" width="560" height="56" rx="28" fill="#0b1220" opacity="0.95"/>
+      <!-- microphone -->
+      <g transform="translate(-100,8)" fill="#fffb" opacity="0.95">
+        <rect x="0" y="0" width="40" height="40" rx="10" fill="#ef4444"/>
+        <text x="20" y="26" font-size="18" text-anchor="middle" fill="#fff">Mic</text>
+      </g>
+      <!-- camera -->
+      <g transform="translate(-30,8)" fill="#fffb">
+        <rect x="0" y="0" width="40" height="40" rx="10" fill="#10b981"/>
+        <text x="20" y="26" font-size="18" text-anchor="middle" fill="#fff">Cam</text>
+      </g>
+      <!-- hangup -->
+      <g transform="translate(40,8)">
+        <rect x="0" y="0" width="40" height="40" rx="10" fill="#ef4444"/>
+        <path d="M12 14 L28 26 M28 14 L12 26" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- small recording indicator -->
+      <g transform="translate(140,-16)">
+        <circle cx="12" cy="12" r="8" fill="#ef4444"/>
+        <text x="32" y="16" font-family="Inter, Arial, sans-serif" font-size="12" fill="#fff">REC</text>
+      </g>
+    </g>
+  </g>
+
+</svg>
