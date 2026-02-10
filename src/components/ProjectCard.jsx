@@ -1,27 +1,78 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { ExternalLink, Github } from 'lucide-react'
+
 export default function ProjectCard({ p }) {
   const [imgSrc, setImgSrc] = useState(p.image)
-  const [imgStatus, setImgStatus] = useState('loading') // 'loading' | 'loaded' | 'error'
+  const [imgStatus, setImgStatus] = useState('loading')
 
   return (
-    <motion.a href={p.link} target={p.link?.startsWith('#') ? undefined : '_blank'} rel={p.link?.startsWith('#') ? undefined : 'noreferrer'} initial={{opacity:0,y:16}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6}} className="group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur shadow-glowSoft relative">
-      <div className="aspect-video overflow-hidden">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="group rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-transparent hover:border-accent/30 backdrop-blur shadow-lg hover:shadow-accent/10 transition-all duration-500"
+    >
+      {/* Image Container */}
+      <div className="aspect-video overflow-hidden relative bg-gradient-to-br from-brand-600/20 to-accent/20">
         <img
           src={imgSrc}
           alt={`${p.name} screenshot`}
-          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-          onLoad={()=>setImgStatus('loaded')}
-          onError={(e)=>{ setImgStatus('error'); setImgSrc('/images/project-fallback.svg') }}
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          onLoad={() => setImgStatus('loaded')}
+          onError={() => {
+            setImgStatus('error')
+            setImgSrc('/images/project-fallback.svg')
+          }}
         />
+        {/* Overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-60"></div>
+
+        {/* Year Badge */}
+        <div className="absolute top-4 right-4 px-3 py-1 bg-black/60 backdrop-blur-sm rounded-full text-xs font-medium text-accent border border-accent/30">
+          {p.year}
+        </div>
       </div>
-      {/* debug badge to help diagnose missing images */}
-      <div className="absolute top-2 left-2 bg-black/60 text-xs text-white px-2 py-1 rounded-md">
-        <div className="whitespace-nowrap">{imgStatus === 'loading' ? 'loading…' : imgStatus}</div>
-        <div className="max-w-xs truncate text-[10px] opacity-90">{imgSrc}</div>
+
+      {/* Content */}
+      <div className="p-6">
+        <div className="flex items-start justify-between gap-4 mb-3">
+          <h3 className="text-xl font-semibold text-white group-hover:text-accent transition-colors">
+            {p.name}
+          </h3>
+          {p.link && p.link !== '#' && (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              className="p-2 rounded-lg bg-white/5 hover:bg-accent/20 border border-white/10 hover:border-accent/50 transition-all duration-300"
+            >
+              {p.link.includes('github') ? (
+                <Github className="w-4 h-4" />
+              ) : (
+                <ExternalLink className="w-4 h-4" />
+              )}
+            </a>
+          )}
+        </div>
+
+        <p className="text-slate-400 text-sm leading-relaxed mb-4">
+          {p.description}
+        </p>
+
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-2">
+          {p.stack.map((s, i) => (
+            <span
+              key={i}
+              className="text-xs px-2.5 py-1 rounded-md bg-accent/10 border border-accent/20 text-accent font-medium"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
       </div>
-      <div className="p-5"><div className="flex items-center justify-between"><h3 className="text-lg font-semibold">{p.name}</h3><span className="text-xs text-slate-400">{p.year}</span></div><p className="mt-2 text-slate-300">{p.description}</p></div>
-      <div className="px-5 pb-5 flex flex-wrap gap-2">{p.stack.map((s,i)=>(<span key={i} className="text-xs px-2 py-1 rounded-full bg-brand-500/20 border border-brand-500/30">{s}</span>))}</div>
-    </motion.a>
+    </motion.div>
   )
 }

@@ -1,13 +1,78 @@
-export const PROFILE = { name:'Navneet Kumar', title:'Full Stack Developer', location:'Bangalore, Karnataka', email:'Navneetkumar1266@gmail.com', phone:'8340398051', github:'https://github.com/Navneet1266', linkedin:'https://www.linkedin.com/in/navneet-kumar-1266', summary:`Full‑stack developer specialized in building scalable web apps and delightful user interfaces. I work across React, Node.js, SQL, and modern tooling to ship fast, reliable products.` }
-export const EDUCATION = [
-  { school:'Kalinga Institute of Industrial Technology', degree:'B.Tech in Computer Science & Engineering', meta:'CGPA: 8.02', location:'Bhubaneswar, Odisha', period:'Aug 2021 – May 2025' },
-  { school:'Vidya Sanskar School (CBSE)', degree:'Class XII', location:'Patna, Bihar', period:'2020' },
-  { school:'St Karen’s High School (CBSE)', degree:'Class X', location:'Patna, Bihar', period:'2018' }]
+export const PROFILE = {
+  name: 'Navneet Kumar',
+  title: 'Full Stack Developer',
+  location: 'Bengaluru, Karnataka',
+  email: 'Navneetkumar1266@gmail.com',
+  phone: '8340398051',
+  github: 'https://github.com/Navneet1266',
+  linkedin: 'https://linkedin.com/in/navneetkumar1266',
+  summary: `Results-driven Full Stack Developer with hands-on experience in designing, developing, and deploying scalable web applications and RESTful APIs. Proficient in building high-performance backend architectures, intuitive frontends, and integrating cloud-native services. Passionate about LLMs, AI, and cloud computing to develop data-driven, innovative, and maintainable digital solutions.`
+}
+
+export const SKILLS = {
+  frontend: ['React.js', 'Next.js', 'Vue.js', 'JavaScript (ES6+)', 'TypeScript', 'Redux Toolkit', 'D3.js', 'Tailwind CSS', 'Bootstrap'],
+  backend: ['Node.js', 'Express.js', 'MySQL', 'MongoDB', 'Socket.io', 'REST APIs', 'GraphQL', 'Microservices', 'Cron Jobs'],
+  languages: ['JavaScript', 'Python', 'Java', 'SQL', 'TypeScript'],
+  data: ['NumPy', 'Pandas', 'Matplotlib', 'TensorFlow', 'Keras', 'Scikit-learn', 'SentenceTransformers', 'ChromaDB'],
+  devops: ['Git', 'GitHub', 'Docker', 'Jenkins', 'Postman', 'VS Code', 'Linux', 'Figma', 'JIRA', 'CI/CD', 'AWS', 'GCP']
+}
+
 export const EXPERIENCE = [
-  { company:'Globiva', role:'Full Stack Developer', period:'Feb 2025 – Present', bullets:['Architected and delivered end‑to‑end web solutions using React, Node.js, JavaScript, SQL, and Bootstrap.','Built Report Incident, Holiday Master, Asset Management, and an advanced To‑Do List to streamline workflows.','Engineered scalable REST APIs and optimized queries for faster processing and reduced load times.']},
-  { company:'Celebal Technologies', role:'Backend Intern', period:'Jun 2024 – Aug 2024', bullets:['Developed scalable server‑side applications with Node.js and Express.','Built and maintained REST APIs supporting dynamic web applications and real‑time systems.']}]
+  {
+    company: 'Globiva Services Pvt. Ltd.',
+    role: 'Full Stack Developer',
+    period: 'Feb 2025 – Present',
+    location: 'Bengaluru, Karnataka',
+    bullets: [
+      'Architected and implemented a scalable web framework enabling 15+ new feature deployments per quarter, increasing user engagement by 30%.',
+      'Engineered and maintained key modules including Incident Reporting, Asset Management, and Task Tracker, enhancing workflow automation by 35%.',
+      'Optimized backend performance by refactoring RESTful APIs, improving response time by 40%.',
+      'Automated build and deployment workflows through CI/CD pipelines, reducing manual release errors by 30%.'
+    ]
+  },
+  {
+    company: 'Celebal Technologies',
+    role: 'Backend Developer Intern',
+    period: 'Jun 2024 – Aug 2024',
+    location: 'Remote',
+    bullets: [
+      'Engineered and deployed Node.js/Express.js APIs handling thousands of concurrent requests with high availability.',
+      'Integrated Socket.io for real-time synchronization and JWT authentication for secure session management.',
+      'Optimized SQL query performance and caching, cutting average response time by 30%.',
+      'Configured Jenkins + GitLab CI/CD pipelines, accelerating deployment speed by 3x.'
+    ]
+  }
+]
+
 export const PROJECTS = [
-  { name:'Yoom — Video Chat App', year:'2025', stack:['Next.js','TypeScript','Clerk','GetStream','Shadcn UI','Tailwind CSS'], description:'Secure, scalable video conferencing with auth, real‑time meetings, personal rooms, recording & playback.', link:'#', image:'/images/yoom.svg?v=2' },
-  { name:'LLM Q&A Chatbot', year:'2025', stack:['Python','Flask','Sentence‑Transformers','ChromaDB','RAG'], description:'Document‑aware chatbot for Excel/PDF/CSV with embeddings, semantic+fuzzy matching, and PDF fallback.', link:'#', image:'/images/chatbot-v3.svg?v=3' }]
-export const SKILLS = { frontend:['JavaScript','React','Redux','Redux Toolkit','Tailwind CSS','Bootstrap','D3.js'], backend:['Node.js','Express.js','MySQL','Socket.io','Cron Jobs'], languages:['JavaScript','Python','Java','SQL'], data:['NumPy','Pandas','Matplotlib','TensorFlow','Keras','OpenPyXL','PyMuPDF','PyPDF2','Regex','Sentence Transformers (MiniLM)','ChromaDB','Scikit‑learn']}
-export const CERTIFICATIONS = [{ name:'HackerRank (Basic & Intermediate)', issuer:'HackerRank', date:'Aug 2023', location:'Bhubaneswar, Odisha' }]
+  {
+    name: 'Email Management System',
+    year: '2025',
+    stack: ['Node.js', 'Microsoft Graph API', 'OAuth 2.0', 'Socket.io', 'Cron Jobs'],
+    description: 'Developed an email management system for Tata Motors using Microsoft Graph APIs to automate email processing, inbox management, and customer replies. Implemented secure OAuth 2.0 authentication and real-time email updates using Cron Jobs and Socket.io.',
+    link: '#',
+    image: '/images/email-system.svg'
+  },
+  {
+    name: 'LLM-Powered Q&A Chatbot',
+    year: '2025',
+    stack: ['Python', 'Flask', 'SentenceTransformers', 'ChromaDB', 'RAG'],
+    description: 'Architected a document-aware chatbot using Retrieval-Augmented Generation (RAG) pipelines for structured data queries. Improved semantic accuracy by 28% through SentenceTransformers and fuzzy logic matching.',
+    link: 'https://github.com/Navneet1266',
+    image: '/images/chatbot-v3.svg'
+  }
+]
+
+export const EDUCATION = [
+  {
+    school: 'Kalinga Institute of Industrial Technology (KIIT)',
+    degree: 'Bachelor of Technology in Computer Science and Engineering',
+    meta: 'CGPA: 8.02/10',
+    location: 'Bhubaneswar, Odisha',
+    period: 'Aug 2021 – May 2025'
+  }
+]
+
+export const CERTIFICATIONS = [
+  { name: 'HackerRank (Basic & Intermediate)', issuer: 'HackerRank', date: 'Aug 2023', location: 'Online' }
+]

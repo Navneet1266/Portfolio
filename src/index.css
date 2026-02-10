@@ -1,7 +1,117 @@
-@tailwind base; @tailwind components; @tailwind utilities;
-html { scroll-behavior: smooth; }
-section { scroll-margin-top: 80px; }
-*::-webkit-scrollbar { width: 10px; }
-*::-webkit-scrollbar-track { background: #0b1220; }
-*::-webkit-scrollbar-thumb { background: #4f46e5; border-radius: 8px; }
-.bg-grid { background-image: radial-gradient(circle at 1px 1px, rgba(99,102,241,0.25) 1px, transparent 0); background-size: 24px 24px; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll margin for sections */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Custom scrollbar */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0b1220;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1 0%, #06b6d4 100%);
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #818cf8 0%, #22d3ee 100%);
+}
+
+/* Grid background pattern */
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(99, 102, 241, 0.15) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: white;
+}
+
+/* Focus outline for accessibility */
+*:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+/* Smooth animations for all elements */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Text glow effect */
+.text-glow {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+/* Shadow glow effect */
+.shadow-glow {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+/* Gradient text animation */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Improved link hover effects */
+a {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Card hover lift effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
