@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout:*)",
+      "Bash(dir:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nUpdate portfolio with new resume info and improved UI\n\n- Updated profile data with correct contact info, skills, experience, and projects\n- Redesigned hero section with floating animation and stats cards\n- Improved navbar, sidebar, and all component styling\n- Enhanced skills section with DevOps category\n- Added new projects: Email Management System and LLM Chatbot\n- Fixed resume download link to correct PDF filename\n- Removed animated navigation indicator line\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)"
+    ]
+  }
+}
