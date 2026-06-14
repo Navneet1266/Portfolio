@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Moon, Sun, Menu, Code2 } from 'lucide-react'
+import { Moon, Sun, Menu, Code2, Terminal } from 'lucide-react'
 import { smoothScrollToHash } from '../utils/smoothScroll'
 
 const links = [
@@ -12,7 +12,7 @@ const links = [
   { id: 'contact',    label: 'Contact' },
 ]
 
-export default function Navbar({ onOpenSidebar, activeId }) {
+export default function Navbar({ onOpenSidebar, activeId, onOpenCmd }) {
   const [dark, setDark] = useState(true)
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -108,6 +108,26 @@ export default function Navbar({ onOpenSidebar, activeId }) {
 
         {/* Right actions */}
         <div className="flex items-center gap-2">
+          {/* ⌘K command palette trigger */}
+          <button
+            onClick={onOpenCmd}
+            title="Open command palette (Ctrl+K)"
+            className="group flex items-center gap-2.5 pl-3 pr-2 py-1.5 rounded-xl border border-white/10 bg-white/[0.04] hover:border-accent/50 hover:bg-white/[0.08] transition-all duration-200"
+          >
+            <Terminal className="w-3.5 h-3.5 text-slate-400 group-hover:text-accent transition-colors duration-200" />
+            <span className="text-slate-400 group-hover:text-slate-200 text-xs transition-colors duration-200 hidden sm:inline">
+              Search...
+            </span>
+            <span className="flex items-center gap-1">
+              <kbd className="px-1.5 py-0.5 rounded-md bg-white/8 border border-white/15 text-[10px] font-mono text-slate-500 group-hover:border-accent/40 group-hover:text-accent transition-all duration-200">
+                Ctrl
+              </kbd>
+              <kbd className="px-1.5 py-0.5 rounded-md bg-white/8 border border-white/15 text-[10px] font-mono text-slate-500 group-hover:border-accent/40 group-hover:text-accent transition-all duration-200">
+                K
+              </kbd>
+            </span>
+          </button>
+
           <a
             href="#contact"
             onClick={(e) => handleClick(e, 'contact')}

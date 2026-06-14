@@ -1,130 +1,145 @@
-import { motion } from 'framer-motion'
-import { ExternalLink, Github, CheckCircle2, Mail, Bot, Server } from 'lucide-react'
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { ExternalLink, Github, Mail, Bot, Server, ArrowUpRight } from 'lucide-react'
 
-function ProjectIcon({ type }) {
-  if (type === 'bot') return <Bot className="w-8 h-8 text-purple-300" />
-  if (type === 'email') return <Mail className="w-8 h-8 text-cyan-300" />
-  if (type === 'server') return <Server className="w-8 h-8 text-emerald-300" />
-  return <ExternalLink className="w-8 h-8 text-slate-300" />
+const ICONS = { bot: Bot, email: Mail, server: Server }
+
+// Pull numbers out of highlights for the stat bar
+function extractStat(text) {
+  const m = text.match(/([\d,.]+\s*[%x+]?|[x\d]+x|\d+\.\d+)/)
+  if (!m) return null
+  const label = text.replace(m[0], '').replace(/[—–-]/g, '').trim().slice(0, 28)
+  return { value: m[0], label }
 }
 
 export default function ProjectCard({ p }) {
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], ['6deg', '-6deg']), { stiffness: 120, damping: 22 })
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], ['-6deg', '6deg']),  { stiffness: 120, damping: 22 })
+
+  const onMove  = (e) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    x.set((e.clientX - (r.left + r.width  / 2)) / (r.width  / 2))
+    y.set((e.clientY - (r.top  + r.height / 2)) / (r.height / 2))
+  }
+  const onLeave = () => { x.set(0); y.set(0) }
+
+  const Icon   = ICONS[p.icon] || ExternalLink
+  const stats  = (p.highlights || []).slice(0, 3).map(extractStat).filter(Boolean)
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="group rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent hover:border-accent/40 shadow-lg hover:shadow-accent/10 transition-all duration-500 flex flex-col"
+      transition={{ duration: 0.55 }}
+      layout
+      style={{ perspective: '1200px' }}
     >
-      {/* Visual Header */}
-      <div className={`relative overflow-hidden bg-gradient-to-br ${p.color} p-6 border-b border-white/8`} style={{ minHeight: '160px' }}>
-        {/* Terminal Window */}
-        <div className="relative z-10 bg-slate-900/75 backdrop-blur rounded-xl border border-white/10 shadow-2xl overflow-hidden">
-          {/* Title bar */}
-          <div className="terminal-bar">
-            <span className="terminal-dot bg-red-400/80"></span>
-            <span className="terminal-dot bg-yellow-400/80"></span>
-            <span className="terminal-dot bg-green-400/80"></span>
-            <span className="ml-2 text-xs text-slate-500 font-mono truncate">{p.name.toLowerCase().replace(/\s+/g, '-')}.js</span>
-          </div>
-          {/* Terminal body */}
-          <div className="p-4 font-mono text-xs space-y-1.5">
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">$</span>
-              <span className="text-slate-300">npm run {p.name.split(' ')[0].toLowerCase()}</span>
-            </div>
-            {p.highlights?.map((h, i) => (
-              <div key={i} className="flex items-start gap-2 text-slate-400">
-                <span className="text-accent mt-0.5">✓</span>
-                <span>{h}</span>
-              </div>
-            ))}
-            <div className="flex items-center gap-1 text-slate-500">
-              <span className="text-accent animate-pulse">▊</span>
-              <span>Ready</span>
-            </div>
-          </div>
-        </div>
+      <motion.div
+        style={{ rotateX, rotateY, transformStyle: 'preserve-3d' }}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        className="group h-full flex flex-col rounded-2xl overflow-hidden border border-white/[0.07] bg-white/[0.02] backdrop-blur-sm hover:border-accent/30 transition-all duration-500"
+        whileHover={{ boxShadow: `0 0 0 1px rgba(168,85,247,0.2), 0 30px 60px rgba(0,0,0,0.5), 0 0 60px rgba(168,85,247,0.08)` }}
+      >
+        {/* ── Header band ── */}
+        <div
+          className={`relative overflow-hidden bg-gradient-to-br ${p.color} p-7 flex flex-col gap-5`}
+          style={{ minHeight: 168 }}
+        >
+          {/* subtle inner grid */}
+          <div className="absolute inset-0 bg-grid opacity-[0.08]" />
 
-        {/* Year + icon badge */}
-        <div className="absolute top-4 right-4 flex items-center gap-2">
-          <span className="px-2.5 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs font-medium text-accent border border-accent/30">
-            {p.year}
-          </span>
-        </div>
-
-        {/* Big icon watermark */}
-        <div className="absolute -bottom-3 -left-3 opacity-10">
-          <ProjectIcon type={p.icon} />
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
-        {/* Title row */}
-        <div className="flex items-start justify-between gap-3 mb-1">
-          <div>
-            <h3 className="text-lg font-bold text-white group-hover:text-accent transition-colors leading-snug">
-              {p.name}
-            </h3>
-            {p.subtitle && (
-              <p className="text-xs text-slate-500 mt-0.5">{p.subtitle}</p>
-            )}
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            {p.github && (
-              <a
-                href={p.github}
-                target="_blank"
-                rel="noreferrer"
-                title="View on GitHub"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 hover:border-accent/50 transition-all duration-300"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-            )}
-            {p.link && !p.github && (
-              <a
-                href={p.link}
-                target="_blank"
-                rel="noreferrer"
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/15 border border-white/10 hover:border-accent/50 transition-all duration-300"
-              >
-                <ExternalLink className="w-4 h-4" />
-              </a>
-            )}
-          </div>
-        </div>
-
-        <p className="text-slate-400 text-sm leading-relaxed mt-3 mb-4 flex-1">
-          {p.description}
-        </p>
-
-        {/* Key Highlights */}
-        {p.highlights && (
-          <div className="mb-4 space-y-1.5">
-            {p.highlights.map((h, i) => (
-              <div key={i} className="flex items-start gap-2 text-xs text-slate-300">
-                <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
-                <span>{h}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
-          {p.stack.map((s, i) => (
-            <span
-              key={i}
-              className="text-xs px-2.5 py-1 rounded-md bg-accent/8 border border-accent/20 text-accent/90 font-medium hover:bg-accent/15 transition-colors"
+          {/* Top row: icon + year */}
+          <div className="relative flex items-start justify-between">
+            <div
+              className="p-3 rounded-2xl backdrop-blur-sm"
+              style={{ background: `${p.accent}22`, border: `1px solid ${p.accent}44` }}
             >
-              {s}
+              <Icon className="w-7 h-7" style={{ color: p.accent }} />
+            </div>
+            <span
+              className="text-[11px] font-mono font-bold px-2.5 py-1 rounded-full backdrop-blur-sm"
+              style={{ color: p.accent, background: `${p.accent}18`, border: `1px solid ${p.accent}40` }}
+            >
+              {p.year}
             </span>
-          ))}
+          </div>
+
+          {/* Stat bar */}
+          {stats.length > 0 && (
+            <div className="relative flex gap-3 flex-wrap">
+              {stats.map(({ value, label }, i) => (
+                <div
+                  key={i}
+                  className="flex-1 min-w-[72px] rounded-xl p-3 backdrop-blur-md"
+                  style={{ background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.08)' }}
+                >
+                  <div
+                    className="text-xl font-black leading-none"
+                    style={{ color: p.accent }}
+                  >
+                    {value}
+                  </div>
+                  <div className="text-[10px] text-white/50 mt-1 leading-tight">{label}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-      </div>
+
+        {/* ── Body ── */}
+        <div className="flex flex-col flex-1 p-6">
+          {/* Title row */}
+          <div className="flex items-start justify-between gap-3 mb-1">
+            <div>
+              <h3 className="text-base font-extrabold text-white leading-snug group-hover:text-accent/90 transition-colors duration-300">
+                {p.name}
+              </h3>
+              {p.subtitle && (
+                <p className="text-[11px] text-slate-500 mt-0.5">{p.subtitle}</p>
+              )}
+            </div>
+            <div className="flex gap-1.5 shrink-0">
+              {p.github && (
+                <a href={p.github} target="_blank" rel="noreferrer"
+                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/12 border border-white/8 hover:border-accent/40 transition-all">
+                  <Github className="w-3.5 h-3.5" />
+                </a>
+              )}
+              {p.link && !p.github && (
+                <a href={p.link} target="_blank" rel="noreferrer"
+                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/12 border border-white/8 hover:border-accent/40 transition-all">
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Description */}
+          <p className="text-slate-400 text-[13px] leading-relaxed mt-3 mb-5 flex-1">
+            {p.description}
+          </p>
+
+          {/* Stack */}
+          <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/[0.05]">
+            {p.stack.map((s, i) => (
+              <span
+                key={i}
+                className="text-[11px] px-2.5 py-1 rounded-lg font-semibold transition-all duration-200"
+                style={{
+                  background:   `${p.accent}12`,
+                  border:       `1px solid ${p.accent}30`,
+                  color:        p.accent,
+                }}
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   )
 }
