@@ -88,6 +88,25 @@ export const PROJECTS = [
     icon: 'email'
   },
   {
+    name: 'Worklio — Project Management Platform',
+    subtitle: 'Full-stack real-time Jira/Trello clone',
+    year: '2025',
+    stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Redis', 'Socket.io', 'Redux Toolkit', '@dnd-kit', 'JWT', 'Docker'],
+    description: "Not another CRUD todo app. Worklio is a production-grade Jira/Trello clone that solves the hard problems: real-time sync across multiple users via Socket.io, optimistic drag-and-drop with rollback, and horizontal scaling via Redis pub/sub so events reach users across multiple backend instances. Full data model — Workspace → Board → List → Card → Sprint → Notification — with 30+ REST endpoints, rich card detail panels, agile sprint management, and Docker Compose wiring all 4 services together.",
+    highlights: [
+      '30+ REST API endpoints across 9 Mongoose models',
+      '16+ real-time Socket.io events synced live across all connected users',
+      '4 Docker services orchestrated via Docker Compose (MongoDB, Redis, backend, frontend)',
+      'Redis pub/sub bridge — multi-instance horizontal scaling without missed events',
+      'Optimistic drag-and-drop via @dnd-kit with instant UI + server-side rollback path'
+    ],
+    link: null,
+    github: 'https://github.com/Navneet1266',
+    color: 'from-indigo-600/30 via-violet-500/20 to-blue-500/10',
+    accent: '#6366f1',
+    icon: 'kanban'
+  },
+  {
     name: 'LLM-Powered Q&A Chatbot',
     subtitle: 'RAG architecture that actually doesn\'t hallucinate',
     year: '2025',

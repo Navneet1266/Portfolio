@@ -265,7 +265,7 @@ const SKILL_PROFICIENCY = [
   { label: 'AI / ML',         level: 65, color: 'from-purple-500 to-violet-400' },
 ]
 
-const PROJECT_FILTER_TAGS = ['All', 'Node.js', 'React.js', 'Docker', 'MySQL', 'Python', 'Socket.io', 'MongoDB']
+const PROJECT_FILTER_TAGS = ['All', 'React.js', 'Node.js', 'Socket.io', 'Docker', 'MongoDB', 'Redis', 'MySQL', 'Python']
 
 const achievementIcons = [TrendingUp, Zap, Rocket, Target]
 

@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
-import { ExternalLink, Github, Mail, Bot, Server, ArrowUpRight } from 'lucide-react'
+import { ExternalLink, Github, Mail, Bot, Server, ArrowUpRight, Kanban } from 'lucide-react'
 
-const ICONS = { bot: Bot, email: Mail, server: Server }
+const ICONS = { bot: Bot, email: Mail, server: Server, kanban: Kanban }
 
 // Pull numbers out of highlights for the stat bar
 function extractStat(text) {
