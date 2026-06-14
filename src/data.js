@@ -89,10 +89,10 @@ export const PROJECTS = [
   },
   {
     name: 'Worklio — Project Management Platform',
-    subtitle: 'Full-stack real-time Jira/Trello clone',
+    subtitle: 'Full-stack real-time project management platform',
     year: '2025',
     stack: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Redis', 'Socket.io', 'Redux Toolkit', '@dnd-kit', 'JWT', 'Docker'],
-    description: "Not another CRUD todo app. Worklio is a production-grade Jira/Trello clone that solves the hard problems: real-time sync across multiple users via Socket.io, optimistic drag-and-drop with rollback, and horizontal scaling via Redis pub/sub so events reach users across multiple backend instances. Full data model — Workspace → Board → List → Card → Sprint → Notification — with 30+ REST endpoints, rich card detail panels, agile sprint management, and Docker Compose wiring all 4 services together.",
+    description: "Not another CRUD todo app. Worklio is a production-grade collaborative platform that solves the hard problems: real-time sync across multiple users via Socket.io, optimistic drag-and-drop with rollback, and horizontal scaling via Redis pub/sub so events reach users across multiple backend instances. Full data model — Workspace → Board → List → Card → Sprint → Notification — with 30+ REST endpoints, rich card detail panels, agile sprint management, and Docker Compose wiring all 4 services together.",
     highlights: [
       '30+ REST API endpoints across 9 Mongoose models',
       '16+ real-time Socket.io events synced live across all connected users',
