@@ -511,29 +511,29 @@ export default function App() {
               {
                 icon: Monitor,
                 title: 'Frontend Craft',
-                desc: 'React, Next.js, TypeScript — pixel-perfect UIs that are fast, accessible, and a joy to use.',
+                desc: 'React, Next.js, Vue.js, TypeScript, Redux Toolkit, Tailwind CSS, Framer Motion — pixel-perfect UIs that are fast, accessible, and a joy to use.',
                 grad: 'from-blue-500/15 to-cyan-500/5',
                 border: 'hover:border-blue-400/50',
                 iconCls: 'bg-blue-500/15 border-blue-500/25 text-blue-400',
-                tag: 'React · Next.js · TypeScript',
+                tag: 'React · Next.js · Vue.js · TypeScript · Redux · Tailwind · D3.js',
               },
               {
                 icon: Server,
                 title: 'Backend & Systems',
-                desc: 'Node.js APIs, Docker microservices, Redis, CI/CD — production-grade architecture from day one.',
+                desc: 'Node.js, Express.js, REST APIs, GraphQL, Socket.io, Docker microservices, Redis, MySQL, MongoDB, PostgreSQL, CI/CD — production-grade from day one.',
                 grad: 'from-green-500/15 to-emerald-500/5',
                 border: 'hover:border-green-400/50',
                 iconCls: 'bg-green-500/15 border-green-500/25 text-green-400',
-                tag: 'Node.js · Docker · Redis',
+                tag: 'Node.js · Express.js · Docker · Redis · MySQL · MongoDB · GraphQL · Socket.io · JWT · OAuth 2.0',
               },
               {
                 icon: BrainCircuit,
                 title: 'AI & LLM Integration',
-                desc: 'RAG pipelines, vector search, NLP — bringing real intelligence into products that ship.',
+                desc: 'RAG pipelines, vector search, NLP, TensorFlow, Scikit-learn — bringing real intelligence into products that ship.',
                 grad: 'from-purple-500/15 to-violet-500/5',
                 border: 'hover:border-purple-400/50',
                 iconCls: 'bg-purple-500/15 border-purple-500/25 text-purple-400',
-                tag: 'LLMs · RAG · ChromaDB',
+                tag: 'LLMs · RAG · ChromaDB · SentenceTransformers · NLP · TensorFlow',
               },
             ].map(({ icon: Icon, title, desc, grad, border, iconCls, tag }, i) => (
               <motion.div
@@ -578,7 +578,7 @@ export default function App() {
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/6">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600 mb-3">Currently shipping with</p>
                 <div className="flex flex-wrap gap-2">
-                  {['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Redux Toolkit', 'MySQL', 'Docker', 'Jenkins'].map(t => (
+                  {['React.js', 'Next.js', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB', 'MySQL', 'Redis', 'Redux Toolkit', 'Docker', 'Jenkins', 'GitLab CI/CD', 'REST APIs', 'Socket.io', 'JWT'].map(t => (
                     <span key={t} className="text-xs px-2.5 py-1 rounded-lg bg-accent/8 border border-accent/15 text-accent/80 font-medium">{t}</span>
                   ))}
                 </div>
